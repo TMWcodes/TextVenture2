@@ -79,12 +79,11 @@ $(document).ready(function(){
     $(document).keypress(function(key){
           //if key is enter and text box selected.
         if(key.which === 13 && $('#user-input').is(':focus')) { 
-      
         //jquery
             var value = $('#user-input').val().toLowerCase(); //user input to lowercase val returns value of what is referenced.
+            //text box resets on enter
+            $('#user-input').val("");
             playerInput(value);
-            
-
         }
     })
 })
