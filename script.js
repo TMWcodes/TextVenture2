@@ -8,6 +8,9 @@
 //keeping track of the current room
 var currentRoom = "start";
 
+//possible commands in array
+var commands = ["go", "look", "pickup", "talk"]
+var inventory = []
 //if room, currentRoom (start) direction "exists" (is not undefined)
 //then current room will be updated. 
 function changeRoom(dir) {
@@ -20,21 +23,46 @@ function changeRoom(dir) {
     }
 }
 
+function showHelp() {
+    $('#game-text').append("<p>Here are the possible commands</p>");
+    $('#game-text').append("<p><ul>");
+    //increment through commands array from 0 to length of commands 
+    for(var i = 0; i < commands.length; i++) {
+        $('#game-text').append("<li>" + commands[i] + "</li>");
+    }
+    $('#game-text').append("</ul></p>")
+}
+
+function showInventory() {
+    if(showInventory.length === 0) {
+        $('#game-text').append("<p>You are not carrying anything!</p>");
+        return;
+    }
+    $('#game-text').append("<p>Here is yourt inventory</p>");
+    $('#game-text').append("<p><ul>");
+    //increment through commands array from 0 to length of commands 
+    for(var i = 0; i < inventory.length; i++) {
+        $('#game-text').append("<li>" + commands[i] + "</li>");
+    }
+    $('#game-text').append("</ul></p>")
+}
+
 function playerInput(input) {
     // separate words by space
     var command = input.split(" ")[0];
 //switch case
-switch(command) {
-    case "go":
-        var dir = input.split(" ")[1];
-        changeRoom(dir)
+    switch(command) {
+        case "go":
+            var dir = input.split(" ")[1];
+            changeRoom(dir)
+            break;
+            //showHelp function, help = showHelp
+        case "help":
+            showHelp();
+            break;
+    case "inventory":
+        showInventory()
         break;
-    // case "south":
-    //     changeRoom("south")
-    //     break;
-    // case "east":
-    //     changeRoom("east")
-    //     break;
     // case "west":
     //     changeRoom("west")
     //     break;
